@@ -1,4 +1,4 @@
-# Contribution Summary(done by sm-911)
+# Contribution Summary
 
 | Path (relative) | Change type | Description |
 |---|---|---|
