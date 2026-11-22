@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "shadowmind"
+version = "1.1.0"
+description = "An Adaptive Cyber Defense System — AI-powered threat detection, honeypot management, and vault encryption."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Sourya Dey", email = "sourya.dey@example.com" },
+  { name = "sm-911" },
+]
+keywords = ["cybersecurity", "AI", "threat-detection", "honeypot", "GNN"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Security",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+  "customtkinter>=5.2.0",
+  "bcrypt>=4.0.0",
+  "cryptography>=41.0.0",
+  "pyyaml>=6.0",
+  "pandas>=2.0.0",
+  "numpy>=1.24.0",
+  "scikit-learn>=1.3.0",
+  "torch>=2.0.0",
+  "matplotlib>=3.7.0",
+  "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+  "flake8>=6.1",
+  "black>=23.9",
+  "mypy>=1.5",
+]
+notebooks = [
+  "jupyter>=1.0.0",
+]
+
+[project.scripts]
+shadowmind = "main:main"
+attack-runner = "attack_runner:main"
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

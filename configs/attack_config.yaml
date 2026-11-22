@@ -1,0 +1,26 @@
+# =============================================================================
+# FILE: configs/attack_config.yaml
+# PURPOSE: Central configuration for the unified attack_runner.py script.
+#          Edit this file to change targets, paths, and timing — no code edits needed.
+# =============================================================================
+
+# Target base URL — override with --url flag or set an env var
+# Examples:
+#   http://192.168.29.250:8080             (local LAN)
+#   https://when-point-triple-ticket.trycloudflare.com  (Cloudflare tunnel)
+target_url: "http://192.168.29.250:8080"
+
+# Number of parallel worker threads (parallel mode)
+workers: 6
+
+# Seconds to wait between requests (serial mode)
+serial_delay: 3.0
+
+# Vault paths to probe during simulation
+paths:
+  - "/vault/credentials.env.enc"
+  - "/vault/customer_database_dump.sql"
+  - "/vault/source_code.zip"
+  - "/vault/aws_production_keys.env"
+  - "/vault/internal_network_topology.txt"
+  - "/vault/executive_payroll_salaries.pdf"
