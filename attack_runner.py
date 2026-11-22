@@ -78,6 +78,7 @@ def validate_url(url: str) -> str:
 def _hit_requests(base_url: str, path: str) -> str:
     """Make one GET request using the `requests` library."""
     import requests  # optional dependency
+
     url = f"{base_url.rstrip('/')}{path}"
     try:
         start = time.time()
@@ -92,6 +93,7 @@ def _hit_native(base_url: str, path: str) -> str:
     """Make one GET request using stdlib urllib only (zero external deps)."""
     import urllib.request
     import urllib.error
+
     url = f"{base_url.rstrip('/')}{path}"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "ShadowMind-AttackRunner/1.0"})
@@ -174,16 +176,27 @@ def parse_args(cfg: dict) -> argparse.Namespace:
         description="ShadowMind Unified Attack Simulation Runner",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("--mode", choices=["parallel", "serial", "multihop"],
-                        required=True, help="Attack mode to run.")
-    parser.add_argument("--url", default=default_url,
-                        help="Target base URL (default from config.yaml).")
-    parser.add_argument("--native", action="store_true",
-                        help="Use stdlib only — no pip installs required.")
-    parser.add_argument("--workers", type=int, default=default_workers,
-                        help="Thread count for parallel mode.")
-    parser.add_argument("--delay", type=float, default=default_delay,
-                        help="Seconds between requests in serial mode.")
+    parser.add_argument(
+        "--mode",
+        choices=["parallel", "serial", "multihop"],
+        required=True,
+        help="Attack mode to run.",
+    )
+    parser.add_argument(
+        "--url", default=default_url, help="Target base URL (default from config.yaml)."
+    )
+    parser.add_argument(
+        "--native", action="store_true", help="Use stdlib only — no pip installs required."
+    )
+    parser.add_argument(
+        "--workers", type=int, default=default_workers, help="Thread count for parallel mode."
+    )
+    parser.add_argument(
+        "--delay",
+        type=float,
+        default=default_delay,
+        help="Seconds between requests in serial mode.",
+    )
     # Expose paths list override via config only (not CLI) to keep things simple
     ns = parser.parse_args()
     ns.paths = default_paths

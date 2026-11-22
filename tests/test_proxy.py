@@ -4,8 +4,7 @@
 # RUN:   pytest tests/test_proxy.py -v
 # =============================================================================
 
-import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
 
 class TestMultiHopProxyHandler:
@@ -14,6 +13,7 @@ class TestMultiHopProxyHandler:
     def _make_handler(self):
         """Instantiate handler with mocked socket/server."""
         from proxy import MultiHopProxyHandler
+
         handler = MultiHopProxyHandler.__new__(MultiHopProxyHandler)
         handler.path = "/vault/test"
         handler.client_address = ("10.0.0.1", 1234)
